@@ -9,6 +9,7 @@ import { Wrapper } from "./Login.styles";
 
 //Context
 import { Context } from "../../context";
+import API from "../../API";
 
 const Login: FunctionComponent = () => {
 
@@ -20,9 +21,23 @@ const Login: FunctionComponent = () => {
     const navigate = useNavigate();
 
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         try {
             
+            const requestToken = await API.getRequestToken();
+            const sessionId = await API.authenticate(
+                requestToken,
+                username,
+                password
+            );
+
+            console.log(sessionId);
+
+            setUser({
+                sessionId: sessionId.session_id, username
+            })
+            navigate('/');
+
         } catch (error) {
             setError(true)
         }

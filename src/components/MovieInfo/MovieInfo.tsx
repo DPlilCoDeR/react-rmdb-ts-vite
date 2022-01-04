@@ -13,6 +13,9 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import NoImage from '../../images/no_image.jpg';
 import { Movie, Crew } from '../../types';
 
+//Components
+import Rate from '../Rate/Rate'
+
 
 interface MovieInfoProps {
     movie: Movie & {
@@ -49,8 +52,11 @@ const MovieInfo: FunctionComponent<MovieInfoProps> = ({movie}) => (
                         ))}
                     </div>
                 </div>
+                <div>
+                    <p>Rate movie</p>
+                    <Rate/>
+                </div>
             </Text>
-
         </Content>
     </Wrapper>
 );

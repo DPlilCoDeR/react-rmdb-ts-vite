@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from 'react';
 
 //Link
 import { Link } from 'react-router-dom';
@@ -8,13 +8,28 @@ import TMDBLogo from '../../images/tmdb_logo.svg';
 
 import { Wrapper, Content, LogoImg, TMDBLogoImg } from './Header.styles';
 
+//Context
+import { Context } from '../../context';
+
 const Header:FunctionComponent = () => {
+  //@ts-ignore
+  const [user] = useContext(Context)
+
   return (
   <Wrapper>
     <Content>
       <Link to='/'>
         <LogoImg src={RMDBLogo} alt='rmdb-logo' />
       </Link>
+      {user ? (
+        <span>Logged in as: {user.username}</span>
+      ):
+      (
+        <Link to='/login'>
+          <span>Login</span>
+      </Link>
+      )}
+      
       <TMDBLogoImg src={TMDBLogo} alt='tmdb-logo' />
     </Content>
   </Wrapper>

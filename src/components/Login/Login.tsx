@@ -17,6 +17,7 @@ const Login: FunctionComponent = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
 
+    // @ts-ignore
     const [_user, setUser] = useContext(Context)
     const navigate = useNavigate();
 
@@ -52,6 +53,7 @@ const Login: FunctionComponent = () => {
 
     return (
         <Wrapper>
+            {error && <div className="error">There was a error!</div>}
             <label>Username: </label>
             <input 
                 type="text" 
